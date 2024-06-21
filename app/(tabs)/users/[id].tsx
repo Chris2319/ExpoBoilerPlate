@@ -1,7 +1,7 @@
-import {Pressable, Text, View} from 'react-native';
-import {Link, router} from 'expo-router';
+import {Text, View} from 'react-native';
+import {Link} from 'expo-router';
 
-const TabsHome = () => {
+const User = () => {
     return (
         <View
             style={{
@@ -10,10 +10,10 @@ const TabsHome = () => {
                 alignItems: 'center',
             }}
         >
-            <Text>This is Tabs index page</Text>
+            <Text>User</Text>
             <Link href={''}>Go home</Link>
         </View>
     );
-}
+};
 
-export default TabsHome
+export default User;

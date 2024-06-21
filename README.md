@@ -1,27 +1,39 @@
-# Welcome to your Expo app 👋
+# Expo vs React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+- React Native is an open-source framework maintained by Meta (Facebook), designed for building cross-platform apps 
+- Expo is an open-source framework maintained by Expo itself, designed for building cross-platform apps
+- Unlike plain RN, which can be challenging and time-consuming to set up, Expo provides a streamlined experience
+- Expo has a suite of tools and services built around React Native, which greatly simplifies the development process
+- With plain React Native, you cannot build iOS apps on a windows or linux machine. Native iOS apps can only be built on a macOS machine
+- With Expo, you can develop your app on windows or linux and run your app on a physical iPhone
+- Expo has evolved significantly over the years and now supports nearly all the features necessary for building mobile apps
+- In the event that you require access to native Android or iOS code, Expo allows you to eject your app and work with a plain React Native codebase
+- Expo is to React Native how NextJs is to React
 
-## Get started
+# Setup your [Expo](https://expo.dev) project quick
+### If the project is under time constraints consider using Expo Application Services
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Install the latest stable version of node https://nodejs.org/en
+   1. Consider using Node Version Manager (nvm) if other projects require specific versions
+2. Using the terminal navigate to your project's directory i.e: C:\Projects
+3. Run the following commands:
+   1. ```npx create-expo-app@latest```
+   2. If the files don't automatically appear, try restarting your IDE
+4. Create an Expo account and run the following commands:
+   1. https://expo.dev/signup
+   2. ```npm install -g eas-cli```
+   3. ```eas login```
+   4. ```eas build:configure```
+   5. ```eas build --platform android --profile development```
+5. Start the project
+   1. ```npx expo start```
+   2. [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+   3. [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+   4. [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+   5. [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+      1. You should see a QR code 
+      2. Install the Expo app https://play.google.com/store/apps/details?id=host.exp.exponent
+      3. Scan the QR code to load the app in your device
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
