@@ -11,7 +11,7 @@ const UsersHome = () => {
             }}
         >
             <Text>USERS HOME</Text>
-            <Link href={''}>Go home</Link>
+            <Link href={'home'}>Go home</Link>
             <Link href={'users/1'}>Go to user 1</Link>
             <Link href={'users/2'}>Go to user 2</Link>
         </View>
