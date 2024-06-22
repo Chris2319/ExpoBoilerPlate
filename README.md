@@ -10,8 +10,7 @@
 - In the event that you require access to native Android or iOS code, Expo allows you to eject your app and work with a plain React Native codebase
 - Expo is to React Native how NextJs is to React
 
-# Setup your [Expo](https://expo.dev) project quick
-### If the project is under time constraints consider using Expo Application Services
+# Setup your [Expo](https://expo.dev) project
 
 1. Install the latest stable version of node https://nodejs.org/en
    1. Consider using Node Version Manager (nvm) if other projects require specific versions
@@ -29,6 +28,8 @@
    1. ```npx expo start```
    2. [development build](https://docs.expo.dev/develop/development-builds/introduction/)
    3. [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+      1. Check if your system supports virtualization ```systeminfo``` or Run (windows + R) > ```msinfo32```
+      2. Check your BIOS (likely under cpu settings) and enable it 
    4. [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
    5. [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
       1. You should see a QR code 
@@ -37,15 +38,6 @@
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
 ## Learn more
 

@@ -27,6 +27,18 @@ const RootLayout = () => {
     return (
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <Stack>
+                <Stack.Screen name="index" options={{
+                    headerTitle: 'Home',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme ?? 'light'].background,
+                    }
+                }}/>
+                <Stack.Screen name="orders/index" options={{
+                    headerTitle: 'Orders',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme ?? 'light'].background,
+                    }
+                }}/>
                 <Stack.Screen name="(tabs)" options={{
                     headerShown: false
                 }}/>
