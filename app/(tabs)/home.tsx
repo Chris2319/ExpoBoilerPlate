@@ -1,19 +1,4 @@
-import {ThemedView} from '../../components/ThemedView';
-import {ThemedText} from '../../components/ThemedText';
+// EXAMPLE FOR PLATFORM SPECIFIC PAGES
+// Replace with content from '../../components/home/home' if not needed
 
-const TabsHome = () => {
-    return (
-        <ThemedView
-            style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <ThemedText>HOME PAGE</ThemedText>
-            <ThemedText>Header is hidden</ThemedText>
-        </ThemedView>
-    );
-}
-
-export default TabsHome
+export {default} from '../../components/home/home';

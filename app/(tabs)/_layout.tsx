@@ -1,4 +1,4 @@
-import {Tabs} from 'expo-router';
+import {Tabs, router} from 'expo-router';
 import {useThemeColor} from '../../hooks/useThemeColor';
 import {color} from '../../constants/Colors';
 
@@ -19,16 +19,24 @@ const TabLayout = () => {
             backgroundColor: backgroundColor,
         },
         headerTintColor: textColor,
-    }
+    };
 
     return <Tabs>
         <Tabs.Screen name={'home'} options={{...defaultScreenOptions, tabBarLabel: 'Home', headerShown: false}}/>
         <Tabs.Screen name={'users'} options={{...defaultScreenOptions, tabBarLabel: 'Users', headerShown: false}}/>
-        <Tabs.Screen name={'admins'} options={{
-            ...defaultScreenOptions,
-            tabBarLabel: 'Admins',
-            headerTitle: 'Admins',
-        }}/>
+        <Tabs.Screen name={'admins'}
+                     options={{
+                         ...defaultScreenOptions,
+                         tabBarLabel: 'Admins',
+                         headerTitle: 'Admins',
+                     }}
+                     listeners={() => ({
+                         tabPress: (e) => {
+                             e.preventDefault();
+                             // router.push(); //TODO: Add modal component
+                         }
+                     })}
+        />
     </Tabs>;
 
 };
