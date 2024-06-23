@@ -1,8 +1,6 @@
-import {Pressable, Text, View} from 'react-native';
+import {Pressable} from 'react-native';
 import {Link, router} from 'expo-router';
 import {ThemedText} from '../components/ThemedText';
-import {useColorScheme} from '../hooks/useColorScheme';
-import {Colors} from '../constants/Colors';
 import {ThemedView} from '../components/ThemedView';
 
 const Home = () => {

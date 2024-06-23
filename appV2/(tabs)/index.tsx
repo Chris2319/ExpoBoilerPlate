@@ -1,18 +1,19 @@
-import {Pressable, Text, View} from 'react-native';
-import {Link, router} from 'expo-router';
+import {Link} from 'expo-router';
+import {ThemedText} from '../../components/ThemedText';
+import {ThemedView} from '../../components/ThemedView';
 
 const TabsHome = () => {
     return (
-        <View
+        <ThemedView
             style={{
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
         >
-            <Text>This is Tabs index page</Text>
-            <Link href={''}>Go home</Link>
-        </View>
+            <ThemedText>This is Tabs index page</ThemedText>
+            <Link href={''}><ThemedText>Go home</ThemedText></Link>
+        </ThemedView>
     );
 }
 

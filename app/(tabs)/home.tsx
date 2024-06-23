@@ -1,17 +1,18 @@
-import {Text, View} from 'react-native';
-import {Link} from 'expo-router';
+import {ThemedView} from '../../components/ThemedView';
+import {ThemedText} from '../../components/ThemedText';
 
 const TabsHome = () => {
     return (
-        <View
+        <ThemedView
             style={{
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
         >
-            <Text>HOME PAGE</Text>
-        </View>
+            <ThemedText>HOME PAGE</ThemedText>
+            <ThemedText>Header is hidden</ThemedText>
+        </ThemedView>
     );
 }
 

@@ -3,12 +3,15 @@ import {DarkTheme, DefaultTheme, ThemeProvider} from '@react-navigation/native';
 import {useFonts} from 'expo-font';
 import {useEffect} from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import {useColorScheme} from '../hooks/useColorScheme';
-import {Colors} from '../constants/Colors';
+import {useColorScheme} from 'react-native';
+import {color} from '../constants/Colors';
+import {useThemeColor} from '../hooks/useThemeColor';
 
 const RootLayout = () => {
     // Constants
     const colorScheme = useColorScheme();
+    const backgroundColor = useThemeColor(color.background);
+
     const [loaded] = useFonts({
         SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     });
@@ -30,13 +33,13 @@ const RootLayout = () => {
                 <Stack.Screen name="index" options={{
                     headerTitle: 'Home',
                     headerStyle: {
-                        backgroundColor: Colors[colorScheme ?? 'light'].background,
+                        backgroundColor: backgroundColor,
                     }
                 }}/>
                 <Stack.Screen name="orders/index" options={{
                     headerTitle: 'Orders',
                     headerStyle: {
-                        backgroundColor: Colors[colorScheme ?? 'light'].background,
+                        backgroundColor: backgroundColor,
                     }
                 }}/>
                 <Stack.Screen name="(tabs)" options={{

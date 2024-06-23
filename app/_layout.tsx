@@ -4,7 +4,6 @@ import {useFonts} from 'expo-font';
 import {useEffect} from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import {useColorScheme} from '../hooks/useColorScheme';
-import {Colors} from '../constants/Colors';
 
 const RootLayout = () => {
     // Constants

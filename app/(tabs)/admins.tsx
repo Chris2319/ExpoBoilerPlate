@@ -1,18 +1,21 @@
-import {Text, View} from 'react-native';
 import {Link} from 'expo-router';
+import {ThemedView} from '../../components/ThemedView';
+import {ThemedText} from '../../components/ThemedText';
 
 const AdminsHome = () => {
     return (
-        <View
+        <ThemedView
             style={{
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
         >
-            <Text>ADMIN HOME</Text>
-            <Link href={'home'}>Go home</Link>
-        </View>
+            <ThemedText>ADMIN HOME</ThemedText>
+
+            {/*DEPENDING IF NEEDED - ThemedLink*/}
+            <Link href={'home'}><ThemedText>Go home</ThemedText></Link>
+        </ThemedView>
     );
 }
 
