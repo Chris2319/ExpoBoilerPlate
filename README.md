@@ -47,9 +47,68 @@ To learn more about developing your project with Expo, look at the following res
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+## How to navigate the application:
 
-Join our community of developers creating universal apps.
+1. TODO - Once route layout has been decided on please update this.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 5 STEP PROCESS:
+
+1) Make your requirements less dumb.\
+   When asked to design | develop something always question if what we are doing makes logically sense.
+2) Delete the part or process.\
+   Reevaluate pieces of code, if its 'technically' not needed, remove it. We might be fixing | optimising something that
+   is not needed (keep in mind during code cleanup)
+3) Simplify | Optimise.\
+      Clean code is easy to understand | read, meaning that regardless of your level of expertise you should be able to get
+      a rudimentary understanding of the application at a quick glans. Simple code tends to run more efficient (except for
+      some obvious exceptions)
+      See rules below on clean code
+4) Speed up the process.\
+   Recreating a new component will be quicker if they all follow the exact same process and structure. It also speeds up
+   the debugging process as there is a standard to follow
+5) Automate
+
+## GENERAL RULES:
+
+1. Be generous with "else if" statements. Use guard clause, switch or single if. Else if is a sign of unplanned code.
+2. Minimum any's | unknowns
+3. Interface driven where possible
+4. Full descriptive names in loops (WHERE IT MAKES SENSE) e.g. (user) => { someFunction(user) } and NOT (_t) => { someFunc(_t) }.\
+   Using something like _t makes it difficult to debug as you have to keep track of what _t is, what happens when there
+   is a nested loop using _r?\
+   This adds unnecessary overhead for devs. It is much easier to compare user.name === company.employee[employeeIndex]
+   .name VS _u.name === _c.employee[_i].name.
+5. Alphabetize enums or anything that can be alphabetized
+6. Keep imports clean - any minor structure would do.
+7. Comment large blocks of complex code and keep the comments to the point e.g. // Step 1: Get data // Step 2: Sort date (no hand over needed)
+8. No Friday releases to prod or acc (mail - no accountability)
+9. No errors or warnings on commits (excluding duplicate code | typo's)
+10. Group code where possible. e.g keep all constants at the top of every block ==> const const loop loop VS const loop
+    const loop.
+11. Always find root cause. Always look for the root cause of a problem. (check with the backend).
+12. Prevent over-configurability. There are some things that must be future-proof and some NOT.\
+    If a value will only change once a year, why add all the functionality to handle it via a database value? E.g. if a
+    release takes 30min and code change takes 10min (like updating the footer which happens at least once a year) is it
+    worth spending possibly days trying to figure out how to make it database driven just so devs don't have to work on
+    it again and whoever can just update it via postman. 40min once a year for the app lifetime (over 4 years = 160min)
+    VS possible 1 - 2 days (480 - 960 min).\
+    ***A wise man once said "Never spend 6 minutes doing something by hand if you can spend 6 hours failing to automate
+    it"***
+13. Avoid negative conditionals. e.g. if(!notAllowed) { doSomething }
+14. Use types the way it should be used E.g. DON'T use string-boolean checks => if(value === 'true') { doSomething }
+15. Levels of nesting. Try and keep it as low was possible.\
+    E.g. if (condition) { if (condition) { if (condition) { doSomething() } } }
+16. Write code from a FE perspective and not what structure is best for the BE (The BE must return a model designed for the FE). At the end of the day it is HUMAN BEINGS
+    using the application, what makes sense to them?
+    "When Peter clicks the button what must happen?"
+
+## FUNCTIONS RULES:
+
+1) Small.
+2) Do one thing.
+3) Use descriptive names.
+4) Prefer fewer arguments.
+5) Have no side effects. NB!
+6) Line limit on functions. Try and keep it below 100
+7) Don't use flag arguments. Split method into several independent methods that can be called from the client without
+   the flag. i.e myFunc(data: any, doAdditionalGet: boolean) can rather accept the additionalData, this way myFunc only does 1 thing.
