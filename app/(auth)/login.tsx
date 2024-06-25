@@ -2,12 +2,14 @@ import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
 import {useState} from "react";
 import {AuthCredentials, DEFAULT_AUTH_CREDENTIALS, useAuth} from "@/context/AuthContext";
-import {Button, TextInput} from "react-native";
+import {Button, TextInput, useColorScheme} from "react-native";
 import {router} from "expo-router";
+import {color, Colors} from '@/constants/Colors';
 
 const Login = () => {
     const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
     const {onLogin, onRegister} = useAuth();
+    const theme = useColorScheme() ?? 'light';
 
     const login = async () => {
         console.log('login');
@@ -34,8 +36,8 @@ const Login = () => {
             }}
         >
             <ThemedText>LOGIN</ThemedText>
-            <TextInput style={{color: '#fff'}} placeholder={'Email'} onChangeText={(text: string) => setCredentials({...credentials, email: text})}></TextInput>
-            <TextInput style={{color: '#fff'}} placeholder={'Password'} onChangeText={(text: string) => setCredentials({...credentials, password: text})} secureTextEntry={true}></TextInput>
+            <TextInput style={{color: Colors[theme].text}} placeholder={'Email'} onChangeText={(text: string) => setCredentials({...credentials, email: text})}></TextInput>
+            <TextInput style={{color: Colors[theme].text}} placeholder={'Password'} onChangeText={(text: string) => setCredentials({...credentials, password: text})} secureTextEntry={true}></TextInput>
             <Button title={'Login'} onPress={() => login()}/>
             <Button title={'Register'} onPress={() => register()}/>
         </ThemedView>

@@ -1,10 +1,10 @@
 import {Link, Stack, useGlobalSearchParams} from 'expo-router';
-import {ThemedView} from '../../../components/ThemedView';
-import {ThemedText} from '../../../components/ThemedText';
-import {useThemeColor} from '../../../hooks/useThemeColor';
-import {color} from '../../../constants/Colors';
+import {ThemedView} from '@/components/ThemedView';
+import {ThemedText} from '@/components/ThemedText';
+import {color} from '@/constants/Colors';
+import {useThemeColor} from '@/hooks/useThemeColor';
 
-const User = () => {
+const Order = () => {
     const {id} = useGlobalSearchParams();
 
     // TODO: Find a global reusable way for this.
@@ -21,16 +21,16 @@ const User = () => {
             }}
         >
             <Stack.Screen options={{
-                headerTitle: `User ID: ${id}`,
+                headerTitle: `Order: ${id}`,
                 headerStyle: {
                     backgroundColor: backgroundColor,
                 },
                 headerTintColor: textColor,
             }}/>
-            <ThemedText>User</ThemedText>
+            <ThemedText>Order - {id}</ThemedText>
             <Link href={''}><ThemedText>Go home</ThemedText></Link>
         </ThemedView>
     );
 };
 
-export default User;
+export default Order;

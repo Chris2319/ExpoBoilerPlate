@@ -1,7 +1,6 @@
 import {Stack} from 'expo-router';
-import {useThemeColor} from '../../../hooks/useThemeColor';
-import {color} from '../../../constants/Colors';
-import {Button} from "react-native";
+import {useThemeColor} from '@/hooks/useThemeColor';
+import {color} from '@/constants/Colors';
 import {useAuth} from "@/context/AuthContext";
 
 const StackLayout = () => {
@@ -15,11 +14,10 @@ const StackLayout = () => {
     return (
         <Stack>
             <Stack.Screen name={'index'} options={{
-                headerTitle: 'Users',
+                headerTitle: 'Orders',
                 headerStyle: {
                     backgroundColor: backgroundColor,
                 },
-                headerRight: () => <Button onPress={onLogout} title={'Logout'} />,
                 headerTintColor: textColor,
             }}/>
         </Stack>

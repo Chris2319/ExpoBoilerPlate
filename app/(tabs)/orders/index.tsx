@@ -2,7 +2,7 @@ import {Link} from 'expo-router';
 import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
 
-const AdminsHome = () => {
+const OrdersHome = () => {
     return (
         <ThemedView
             style={{
@@ -11,12 +11,14 @@ const AdminsHome = () => {
                 alignItems: 'center',
             }}
         >
-            <ThemedText>ADMIN HOME</ThemedText>
+            <ThemedText>ORDERS HOME</ThemedText>
 
             {/*DEPENDING IF NEEDED - ThemedLink*/}
-            <Link href={'home'}><ThemedText>Go home</ThemedText></Link>
+            <Link href={'orders'}><ThemedText>Go home</ThemedText></Link>
+            <Link href={'orders/1'}><ThemedText>Go to order 1</ThemedText></Link>
+            <Link href={'orders/2'}><ThemedText>Go to order 2</ThemedText></Link>
         </ThemedView>
     );
 }
 
-export default AdminsHome
+export default OrdersHome

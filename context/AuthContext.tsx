@@ -2,6 +2,7 @@ import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
 import {createContext, useContext, useEffect, useState} from "react";
 import {router} from 'expo-router';
+import {Platform} from "react-native";
 
 // INTERFACES
 export interface AuthState {
@@ -22,8 +23,9 @@ export interface AuthProps {
 }
 
 // CONSTANTS
+const IS_WEB = Platform.OS === 'web';
 const TOKEN_KEY = 'jwt';
-const API_URL = 'https://api.developbetterapps.com'; //TODO: Used for testing - UPDATE URL
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
 const DEFAULT_AUTH_STATE: AuthState = {
     token: null,
     authenticated: false
@@ -40,34 +42,52 @@ export const useAuth = () => {
     return useContext(AuthContext)
 }
 
+export const setItem = async (key: string, value: string) => {
+    if (IS_WEB) {
+        localStorage.setItem(key, value);
+    } else {
+        await SecureStore.setItemAsync(key, value);
+    }
+};
+
+export const getItem = async (key: string) => {
+    if (IS_WEB) {
+        return localStorage.getItem(key);
+    } else {
+        return await SecureStore.getItemAsync(key);
+    }
+};
+
+export const removeItem = async (key: string) => {
+    if (IS_WEB) {
+        localStorage.removeItem(key);
+    } else {
+        await SecureStore.deleteItemAsync(key);
+    }
+};
+
 export const AuthProvider = ({children}: any) => {
     // States
     const [authState, setAuthState] = useState<AuthState>(DEFAULT_AUTH_STATE);
 
     // Effects
     useEffect(() => {
-        console.log('authState: ', authState)
-        if (!authState.authenticated) router.replace('/login')
-    }, [authState]);
-
-    // useEffect(() => {
-    //     const loadToken = async () => {
-    //         try {
-    //             const token = await SecureStore.getItemAsync(TOKEN_KEY);
-    //             if (token) {
-    //                 // axios.defaults.headers.common['Authorization'] = `${token}`;
-    //                 setAuthState({
-    //                     token: token,
-    //                     authenticated: true,
-    //                 });
-    //             }
-    //         }catch (error) {
-    //             console.error('SecureStore error:', error);
-    //         }
-    //     }
-    //     loadToken()
-    // }, []);
-
+        const loadToken = async () => {
+            try {
+                const token = await getItem(TOKEN_KEY);
+                if (token) {
+                    // axios.defaults.headers.common['Authorization'] = `${token}`;
+                    setAuthState({
+                        token: token,
+                        authenticated: true,
+                    });
+                }
+            }catch (error) {
+                console.error('Token error:', error);
+            }
+        }
+        loadToken()
+    }, []);
 
     const register = async (credentials: AuthCredentials) => {
         try {
@@ -91,7 +111,7 @@ export const AuthProvider = ({children}: any) => {
                 token: token,
                 authenticated: true,
             });
-            // await SecureStore.setItemAsync(TOKEN_KEY, token);
+            await setItem(TOKEN_KEY, token);
 
             return result;
         } catch (e) {
@@ -100,7 +120,7 @@ export const AuthProvider = ({children}: any) => {
     }
 
     const logout = async () => {
-        // await SecureStore.deleteItemAsync(TOKEN_KEY);
+        await removeItem(TOKEN_KEY);
         axios.defaults.headers.common['Authorization'] = '';
         setAuthState(DEFAULT_AUTH_STATE);
         router.replace('/login')
