@@ -1,8 +1,10 @@
-import {Tabs, router} from 'expo-router';
-import {useThemeColor} from '../../hooks/useThemeColor';
-import {color} from '../../constants/Colors';
+import {Tabs, Redirect} from 'expo-router';
+import {useThemeColor} from '@/hooks/useThemeColor';
+import {color} from '@/constants/Colors';
+import {useAuth} from "@/context/AuthContext";
 
 const TabLayout = () => {
+    const {authState} = useAuth();
 
     // TODO: Find a global reusable way for this.
     // Do we need a Tabs / ThemedTabScreen?
@@ -21,21 +23,22 @@ const TabLayout = () => {
         headerTintColor: textColor,
     };
 
+    if (!authState?.authenticated) return <Redirect href="/login" />;
     return <Tabs>
         <Tabs.Screen name={'home'} options={{...defaultScreenOptions, tabBarLabel: 'Home', headerShown: false}}/>
-        <Tabs.Screen name={'users'} options={{...defaultScreenOptions, tabBarLabel: 'Users', headerShown: false}}/>
+        <Tabs.Screen name={'users'} options={{...defaultScreenOptions, tabBarLabel: 'Users', headerShown: false }}/>
         <Tabs.Screen name={'admins'}
                      options={{
                          ...defaultScreenOptions,
                          tabBarLabel: 'Admins',
                          headerTitle: 'Admins',
                      }}
-                     listeners={() => ({
-                         tabPress: (e) => {
-                             e.preventDefault();
-                             // router.push(); //TODO: Add modal component
-                         }
-                     })}
+                     // listeners={() => ({
+                     //     tabPress: (e) => {
+                     //         e.preventDefault();
+                     //         // router.push(); //TODO: Add modal component
+                     //     }
+                     // })}
         />
     </Tabs>;
 

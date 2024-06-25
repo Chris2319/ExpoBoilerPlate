@@ -1,6 +1,6 @@
 import {Link} from 'expo-router';
-import {ThemedView} from '../../components/ThemedView';
-import {ThemedText} from '../../components/ThemedText';
+import {ThemedView} from '@/components/ThemedView';
+import {ThemedText} from '@/components/ThemedText';
 
 const AdminsHome = () => {
     return (

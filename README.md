@@ -18,18 +18,19 @@
 3. Run the following commands:
    1. ```npx create-expo-app@latest```
    2. If the files don't automatically appear, try restarting your IDE
-4. Create an Expo account and run the following commands:
+4. Install the [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+   1. Check if your system supports virtualization ```systeminfo``` or Run (windows + R) > ```msinfo32```
+   2. Check your BIOS (likely under cpu settings) and enable it
+5. Create an Expo account and run the following commands:
    1. https://expo.dev/signup
    2. ```npm install -g eas-cli```
    3. ```eas login```
    4. ```eas build:configure```
    5. ```eas build --platform android --profile development```
-5. Start the project
+6. Start the project
    1. ```npx expo start```
    2. [development build](https://docs.expo.dev/develop/development-builds/introduction/)
    3. [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-      1. Check if your system supports virtualization ```systeminfo``` or Run (windows + R) > ```msinfo32```
-      2. Check your BIOS (likely under cpu settings) and enable it 
    4. [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
    5. [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
       1. You should see a QR code 
