@@ -1,10 +1,19 @@
+// react
+import {useState} from "react";
+import {Button, TextInput, useColorScheme} from "react-native";
+
+// components
 import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
-import {useState} from "react";
+
+// context
 import {AuthCredentials, DEFAULT_AUTH_CREDENTIALS, useAuth} from "@/context/AuthContext";
-import {Button, TextInput, useColorScheme} from "react-native";
+
+// constants
+import {Colors} from '@/constants/Colors';
+
+// expo
 import {router} from "expo-router";
-import {color, Colors} from '@/constants/Colors';
 
 const Login = () => {
     const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);

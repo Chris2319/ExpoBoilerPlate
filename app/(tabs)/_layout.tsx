@@ -1,9 +1,18 @@
+// react
 import {Button} from "react-native";
+
+// expo
 import {Tabs, Redirect} from 'expo-router';
-import {useThemeColor} from '@/hooks/useThemeColor';
-import {color} from '@/constants/Colors';
-import {useAuth} from "@/context/AuthContext";
 import {Ionicons} from "@expo/vector-icons";
+
+// hooks
+import {useThemeColor} from '@/hooks/useThemeColor';
+
+// constants
+import {color} from '@/constants/Colors';
+
+// context
+import {useAuth} from "@/context/AuthContext";
 
 const TabLayout = () => {
     const {authState, onLogout} = useAuth();

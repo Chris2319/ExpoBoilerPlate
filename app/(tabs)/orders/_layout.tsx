@@ -1,6 +1,13 @@
+// expo
 import {Stack} from 'expo-router';
+
+// hooks
 import {useThemeColor} from '@/hooks/useThemeColor';
+
+// constants
 import {color} from '@/constants/Colors';
+
+// context
 import {useAuth} from "@/context/AuthContext";
 
 const StackLayout = () => {

@@ -1,4 +1,7 @@
+// expo
 import {Link} from 'expo-router';
+
+// components
 import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
 

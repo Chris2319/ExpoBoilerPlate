@@ -1,7 +1,14 @@
+// expo
 import {Link, Stack, useGlobalSearchParams} from 'expo-router';
+
+// components
 import {ThemedView} from '@/components/ThemedView';
 import {ThemedText} from '@/components/ThemedText';
+
+// constants
 import {color} from '@/constants/Colors';
+
+// hooks
 import {useThemeColor} from '@/hooks/useThemeColor';
 
 const Order = () => {
