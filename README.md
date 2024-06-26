@@ -47,6 +47,15 @@ To learn more about developing your project with Expo, look at the following res
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
+## Prettier
+
+You can format the project using ```npm run prettier```
+To change the rules, update the ```.prettierrc``` file - just check in with the team.
+
+## ESLint
+
+To change the rules, update the ```.eslintrc.json``` file - just check in with the team.
+
 ## How to navigate the application:
 
 1. TODO - Once route layout has been decided on please update this.
@@ -81,7 +90,7 @@ To learn more about developing your project with Expo, look at the following res
 5. Alphabetize enums or anything that can be alphabetized
 6. Keep imports clean - any minor structure would do.
 7. Comment large blocks of complex code and keep the comments to the point e.g. // Step 1: Get data // Step 2: Sort date (no hand over needed)
-8. No Friday releases to prod or acc (mail - no accountability)
+8. No Friday releases to prod or acc
 9. No errors or warnings on commits (excluding duplicate code | typo's)
 10. Group code where possible. e.g keep all constants at the top of every block ==> const const loop loop VS const loop
     const loop.
@@ -101,6 +110,9 @@ To learn more about developing your project with Expo, look at the following res
 16. Write code from a FE perspective and not what structure is best for the BE (The BE must return a model designed for the FE). At the end of the day it is HUMAN BEINGS
     using the application, what makes sense to them?
     "When Peter clicks the button what must happen?"
+17. Unused code should be removed. Already mentioned in the 5 step process but worth mentioning again. 
+    Code you are trying to fix might not be needed and this is time wasted - we do have git history.
+    
 
 ## FUNCTIONS RULES:
 
