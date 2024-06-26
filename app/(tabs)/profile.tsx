@@ -9,7 +9,6 @@ import {useState} from "react";
 import {Pressable} from "react-native";
 
 const ProfileHome = () => {
-
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     return (

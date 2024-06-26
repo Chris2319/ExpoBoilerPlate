@@ -7,11 +7,7 @@ import {useThemeColor} from '@/hooks/useThemeColor';
 // constants
 import {color} from '@/constants/Colors';
 
-// context
-import {useAuth} from "@/context/AuthContext";
-
 const StackLayout = () => {
-    const { onLogout} = useAuth();
 
     // TODO: Find a global reusable way for this.
     // Do we need a ThemedScreen?
