@@ -11,11 +11,17 @@ import {useThemeColor} from '@/hooks/useThemeColor';
 // constants
 import {color} from '@/constants/Colors';
 
-// context
-import {useAuth} from "@/context/AuthContext";
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, SIsAuthenticated } from '@/store/slices/authSlice';
 
 const TabLayout = () => {
-    const {authState, onLogout} = useAuth();
+
+    // Dispatch
+    const dispatch: any = useDispatch();
+
+    // Selectors
+    const isAuthenticated = useSelector(SIsAuthenticated);
 
     // TODO: Find a global reusable way for this.
     // Do we need a Tabs / ThemedTabScreen?
@@ -34,7 +40,7 @@ const TabLayout = () => {
         headerTintColor: textColor,
     };
 
-    if (!authState?.authenticated) return <Redirect href="/login"/>;
+    if (!isAuthenticated) return <Redirect href="/login"/>;
     return <Tabs>
         <Tabs.Screen name={'home'} options={{
             ...defaultScreenOptions,
@@ -56,7 +62,7 @@ const TabLayout = () => {
             ...defaultScreenOptions,
             tabBarLabel: 'Profile',
             headerTitle: 'Profile',
-            headerRight: () => <Button onPress={onLogout} title={'Logout'}/>,
+            headerRight: () => <Button onPress={() => dispatch(logout())} title={'Logout'}/>,
             tabBarIcon: ({color, size}) => (
                 <Ionicons name={'home'} color={color} size={size}/>
             )

@@ -1,56 +1,62 @@
 // react
-import {useState} from "react";
-import {Button, TextInput, useColorScheme} from "react-native";
+import { useEffect, useState } from 'react';
+import { Button, TextInput, useColorScheme } from 'react-native';
 
 // components
-import {ThemedView} from '@/components/ThemedView';
-import {ThemedText} from '@/components/ThemedText';
-
-// context
-import {AuthCredentials, DEFAULT_AUTH_CREDENTIALS, useAuth} from "@/context/AuthContext";
+import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
 
 // constants
-import {Colors} from '@/constants/Colors';
+import { Colors } from '@/constants/Colors';
 
 // expo
-import {router} from "expo-router";
+import { router } from 'expo-router';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { loginThunk, registerThunk } from '@/store/thunks/authThunks';
+import { AuthCredentials, DEFAULT_AUTH_CREDENTIALS, SIsAuthenticated } from '@/store/slices/authSlice';
 
 const Login = () => {
-    const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
-    const {onLogin, onRegister} = useAuth();
-    const theme = useColorScheme() ?? 'light';
+  // Selectors
+  const isAuthenticated = useSelector(SIsAuthenticated);
 
-    const login = async () => {
-        console.log('login');
-        const result = await onLogin!(credentials);
-        if(result) router.push('/home');
-        if (result && result.error) alert(result.msg ?? 'Login error')
-    };
-    const register = async () => {
-        console.log('register');
-        const result = await onRegister!(credentials);
-        if (result && result.error) {
-            alert(result.msg ?? 'Login error')
-        } else {
-            login();
-        }
-    };
+  // States
+  const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
+  const theme = useColorScheme() ?? 'light';
 
-    return (
-        <ThemedView
-            style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <ThemedText>LOGIN</ThemedText>
-            <TextInput style={{color: Colors[theme].text}} placeholder={'Email'} onChangeText={(text: string) => setCredentials({...credentials, email: text})}></TextInput>
-            <TextInput style={{color: Colors[theme].text}} placeholder={'Password'} onChangeText={(text: string) => setCredentials({...credentials, password: text})} secureTextEntry={true}></TextInput>
-            <Button title={'Login'} onPress={() => login()}/>
-            <Button title={'Register'} onPress={() => register()}/>
-        </ThemedView>
-    );
-}
+  // Dispatch
+  const dispatch: any = useDispatch();
 
-export default Login
+  useEffect(() => {
+    if (isAuthenticated) router.push('/home');
+  }, [isAuthenticated]);
+
+  const login = async () => {
+   await dispatch(loginThunk(credentials))
+  };
+  const register = async () => {
+    await dispatch(registerThunk(credentials));
+  };
+
+  return (
+    <ThemedView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <ThemedText>LOGIN</ThemedText>
+      <TextInput style={{ color: Colors[theme].text }} placeholder={'Email'}
+                 onChangeText={(text: string) => setCredentials({ ...credentials, email: text })}></TextInput>
+      <TextInput style={{ color: Colors[theme].text }} placeholder={'Password'}
+                 onChangeText={(text: string) => setCredentials({ ...credentials, password: text })}
+                 secureTextEntry={true}></TextInput>
+      <Button title={'Login'} onPress={() => login()} />
+      <Button title={'Register'} onPress={() => register()} />
+    </ThemedView>
+  );
+};
+
+export default Login;
