@@ -1,6 +1,6 @@
 // react
 import { useEffect, useState } from 'react';
-import { Button, TextInput, useColorScheme } from 'react-native';
+import { Button, TextInput, useColorScheme, ActivityIndicator } from 'react-native';
 
 // components
 import { ThemedView } from '@/components/ThemedView';
@@ -15,11 +15,12 @@ import { router } from 'expo-router';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk, registerThunk } from '@/store/thunks/authThunks';
-import { AuthCredentials, DEFAULT_AUTH_CREDENTIALS, SIsAuthenticated } from '@/store/slices/authSlice';
+import { AuthCredentials, DEFAULT_AUTH_CREDENTIALS, SAuthLoaders, SIsAuthenticated } from '@/store/slices/authSlice';
 
 const Login = () => {
   // Selectors
   const isAuthenticated = useSelector(SIsAuthenticated);
+  const { login: loginLoader } = useSelector(SAuthLoaders);
 
   // States
   const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
@@ -32,10 +33,10 @@ const Login = () => {
     if (isAuthenticated) router.push('/home');
   }, [isAuthenticated]);
 
-  const login = async () => {
+  const onLogin = async () => {
    await dispatch(loginThunk(credentials))
   };
-  const register = async () => {
+  const onRegister = async () => {
     await dispatch(registerThunk(credentials));
   };
 
@@ -53,8 +54,10 @@ const Login = () => {
       <TextInput style={{ color: Colors[theme].text }} placeholder={'Password'}
                  onChangeText={(text: string) => setCredentials({ ...credentials, password: text })}
                  secureTextEntry={true}></TextInput>
-      <Button title={'Login'} onPress={() => login()} />
-      <Button title={'Register'} onPress={() => register()} />
+      <Button title={'Login'} onPress={() => onLogin()} />
+      <Button title={'Register'} onPress={() => onRegister()} />
+
+      {loginLoader && <ActivityIndicator/>}
     </ThemedView>
   );
 };

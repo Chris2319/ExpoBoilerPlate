@@ -26,15 +26,13 @@ const RootLayout = () => {
   if (!loaded) return null;
   return (
     <Provider store={store}>
-      {
-        Platform.OS === 'web'
-          ?
-          <PersistGate loading={null} persistor={persistor}>
-            <Slot />
-          </PersistGate>
-          : <Slot />
-      }
-
+      {Platform.OS === 'web' ? (
+        <PersistGate loading={null} persistor={persistor}>
+          <Slot />
+        </PersistGate>
+      ) : (
+        <Slot />
+      )}
     </Provider>
   );
 };

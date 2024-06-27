@@ -8,6 +8,10 @@ export interface AuthState {
   token: string | undefined;
   isAuthenticated: boolean | undefined;
 }
+export interface AuthLoaders {
+  login: boolean;
+  register: boolean;
+}
 
 export interface AuthCredentials {
   email: string;
@@ -17,10 +21,9 @@ export interface AuthCredentials {
 export interface IAuthSlice {
   data: AuthState;
   ui: any;
-  loaders: any;
+  loaders: AuthLoaders;
   alerts: any;
 }
-
 
 export const DEFAULT_AUTH_CREDENTIALS: AuthCredentials = {
   email: '',
@@ -33,7 +36,10 @@ const initialState: IAuthSlice = {
     isAuthenticated: false,
   },
   ui: {},
-  loaders: {},
+  loaders: {
+    login: false,
+    register: false
+  },
   alerts: [],
 };
 
@@ -56,7 +62,7 @@ export const authSlice = createSlice({
     builder.addCase(loginThunk.pending, (state) => {
       state.loaders = {
         ...state.loaders,
-        loginThunk: true,
+        login: true,
       };
     });
     builder.addCase(loginThunk.fulfilled, (state, action) => {
@@ -65,7 +71,7 @@ export const authSlice = createSlice({
 
       state.loaders = {
         ...state.loaders,
-        loginThunk: false,
+        login: false,
       };
     });
     builder.addCase(loginThunk.rejected, (state) => {
@@ -73,7 +79,7 @@ export const authSlice = createSlice({
 
       state.loaders = {
         ...state.loaders,
-        loginThunk: false,
+        login: false,
       };
     });
 
@@ -81,19 +87,19 @@ export const authSlice = createSlice({
     builder.addCase(registerThunk.pending, (state) => {
       state.loaders = {
         ...state.loaders,
-        registerThunk: true,
+        register: true,
       };
     });
     builder.addCase(registerThunk.fulfilled, (state) => {
       state.loaders = {
         ...state.loaders,
-        registerThunk: false,
+        register: false,
       };
     });
     builder.addCase(registerThunk.rejected, (state) => {
       state.loaders = {
         ...state.loaders,
-        registerThunk: false,
+        register: false,
       };
     });
   },
@@ -101,6 +107,7 @@ export const authSlice = createSlice({
 
 export const SIsAuthenticated = (state: RootState) => state.auth.data.isAuthenticated;
 export const SToken = (state: RootState) => state.auth.data.token;
+export const SAuthLoaders = (state: RootState) => state.auth.loaders;
 
 export const { setAuth, logout } = authSlice.actions;
 

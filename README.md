@@ -56,6 +56,32 @@ To change the rules, update the ```.prettierrc``` file - just check in with the 
 
 To change the rules, update the ```.eslintrc.json``` file - just check in with the team.
 
+## Redux Toolkit
+
+For state management RTX is used, for this we need to look at 3 things.
+
+1. store - ```./store/store.ts```
+2. slices - ```.store/slices/authSlice.ts```
+3. thunks - ```.store/thunks/authThunks.ts```
+
+### Store:
+- When adding new states remember to add them to the store
+- ```type IRootState = {...}``` requires an interface for the newly created state.
+- ```rootReducer = combineReducers({...})``` requires the newly created slice.
+
+### Slice:
+- Creating a new slice
+  - ```export const authSlice = createSlice({name, initialState, reducers, extraReducers})```
+  - `name` - this must be unique and added to the `./store.ts`
+  - `initialState` - an object `{ data, ui, loaders, alerts }` must be typed to store related data in.
+  - `reducers` - functions that is used on the ui to update the state, must be used with a dispatch `await dispatch(myNewReducer())` 
+  - `extraReducers` - functions that will run when the corresponding thunk is called and in one of the following states `pending, fulfilled, rejected`
+
+### Thunks:
+- Thunks are used to make api calls
+- must be used with a dispatch `await dispatch(myThunk())`
+- when calling a thunk it will trigger the extraReducers in the slice which can be used to manage state like data, loaders or errors.
+
 ## How to navigate the application:
 
 1. TODO - Once route layout has been decided on please update this.

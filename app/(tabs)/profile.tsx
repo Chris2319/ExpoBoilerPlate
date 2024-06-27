@@ -12,7 +12,7 @@ import { useState } from 'react';
 // redux
 import { Pressable } from 'react-native';
 import { useSelector } from 'react-redux';
-import { SIsAuthenticated, SToken } from '@/store/slices/authSlice';
+import { SToken } from '@/store/slices/authSlice';
 
 const ProfileHome = () => {
   // States

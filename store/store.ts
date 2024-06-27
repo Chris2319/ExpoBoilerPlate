@@ -1,22 +1,24 @@
+// redux
 import {
   combineReducers,
   configureStore,
   PreloadedStateShapeFromReducersMapObject,
-  ReducerFromReducersMapObject, Tuple,
+  ReducerFromReducersMapObject,
 } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
-import storageSession from 'redux-persist/lib/storage/session';
-import thunk from 'redux-thunk';
 import profileSlice, { IProfileSlice } from '@/store/slices/profileSlice';
 import authSlice, { IAuthSlice } from '@/store/slices/authSlice';
+
+// react
 import { Platform } from 'react-native';
+
+// expo
 import * as SecureStore from 'expo-secure-store';
 
 const SecureStoreStorage = {
   getItem: async (key: string): Promise<string | null> => {
-    const value = await SecureStore.getItemAsync(key);
-    return value;
+    return await SecureStore.getItemAsync(key);
   },
   setItem: async (key: string, value: string): Promise<void> => {
     await SecureStore.setItemAsync(key, value);
