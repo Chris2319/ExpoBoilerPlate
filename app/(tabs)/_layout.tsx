@@ -13,7 +13,7 @@ import {color} from '@/constants/Colors';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, SIsAuthenticated } from '@/store/slices/authSlice';
+import { SIsAuthenticated, logout } from '@/store/slices/authSlice';
 
 const TabLayout = () => {
 

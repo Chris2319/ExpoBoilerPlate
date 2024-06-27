@@ -1,8 +1,10 @@
 // Redux
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { RootState } from '@/store/store';
 import { AuthCredentials } from '@/store/slices/authSlice';
+
+// axios
+import axios from 'axios';
 
 export const getProfileDetailsThunk = createAsyncThunk('getProfileDetailsThunk', async (credentials: AuthCredentials | undefined, {
   getState,

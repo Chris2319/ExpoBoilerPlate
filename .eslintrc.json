@@ -8,7 +8,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -51,6 +52,9 @@
         }
       }
     ],
-    "prettier/prettier": ["warn", {}, { "endOfLine": "auto", "usePrettierrc": true }]
+    "prettier/prettier": ["warn", {}, { "endOfLine": "auto", "usePrettierrc": true }],
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/no-rest-destructuring": "warn",
+    "@tanstack/query/stable-query-client": "error"
   }
 }
