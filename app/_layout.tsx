@@ -12,11 +12,23 @@ import { Provider } from 'react-redux';
 import { store, persistor } from '@/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
+// tanstack
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+// import { getTodos, postTodo } from '../my-api'
+
 const RootLayout = () => {
   // Constants
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  const client = new QueryClient();
 
   // Effects
   useEffect(() => {
@@ -28,10 +40,14 @@ const RootLayout = () => {
     <Provider store={store}>
       {Platform.OS === 'web' ? (
         <PersistGate loading={null} persistor={persistor}>
-          <Slot />
+          <QueryClientProvider client={client}>
+            <Slot />
+          </QueryClientProvider>
         </PersistGate>
       ) : (
-        <Slot />
+        <QueryClientProvider client={client}>
+          <Slot />
+        </QueryClientProvider>
       )}
     </Provider>
   );

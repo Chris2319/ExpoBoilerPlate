@@ -15,29 +15,24 @@ import { router } from 'expo-router';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk, registerThunk } from '@/store/thunks/authThunks';
-import { AuthCredentials, DEFAULT_AUTH_CREDENTIALS, SAuthLoaders, SIsAuthenticated } from '@/store/slices/authSlice';
+import {
+  AuthCredentials,
+  DEFAULT_AUTH_CREDENTIALS,
+} from '@/store/slices/authSlice';
+import { useLogin } from '@/hooks/useLogin';
 
 const Login = () => {
-  // Selectors
-  const isAuthenticated = useSelector(SIsAuthenticated);
-  const { login: loginLoader } = useSelector(SAuthLoaders);
 
   // States
   const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
   const theme = useColorScheme() ?? 'light';
-
-  // Dispatch
-  const dispatch: any = useDispatch();
-
-  useEffect(() => {
-    if (isAuthenticated) router.push('/home');
-  }, [isAuthenticated]);
+  const { mutate, isPending, isSuccess, data } = useLogin();
 
   const onLogin = async () => {
-   await dispatch(loginThunk(credentials))
+    mutate(credentials);
   };
   const onRegister = async () => {
-    await dispatch(registerThunk(credentials));
+    // await dispatch(registerThunk(credentials));
   };
 
   return (
@@ -57,7 +52,7 @@ const Login = () => {
       <Button title={'Login'} onPress={() => onLogin()} />
       <Button title={'Register'} onPress={() => onRegister()} />
 
-      {loginLoader && <ActivityIndicator/>}
+      {isPending && <ActivityIndicator />}
     </ThemedView>
   );
 };
