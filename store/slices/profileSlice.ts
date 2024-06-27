@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { getProfileDetailsThunk } from '@/store/thunks/profileThunks';
 
 export interface IProfileSlice {
   data: {
@@ -28,26 +27,6 @@ export const profileSlice = createSlice({
       state.data = action.payload;
     }
   },
-  extraReducers(builder) {
-    builder.addCase(getProfileDetailsThunk.pending, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        profileDetailsThunk: true,
-      };
-    });
-    builder.addCase(getProfileDetailsThunk.fulfilled, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        profileDetailsThunk: false,
-      };
-    });
-    builder.addCase(getProfileDetailsThunk.rejected, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        profileDetailsThunk: false,
-      };
-    });
-  }
 });
 
 export const SProfileData = (state: RootState) => state.profile.data;

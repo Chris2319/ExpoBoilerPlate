@@ -14,13 +14,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 // tanstack
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-// import { getTodos, postTodo } from '../my-api'
 
 const RootLayout = () => {
   // Constants

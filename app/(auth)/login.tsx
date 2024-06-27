@@ -1,5 +1,5 @@
 // react
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, TextInput, useColorScheme, ActivityIndicator } from 'react-native';
 
 // components
@@ -9,30 +9,28 @@ import { ThemedText } from '@/components/ThemedText';
 // constants
 import { Colors } from '@/constants/Colors';
 
-// expo
-import { router } from 'expo-router';
-
-// Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { loginThunk, registerThunk } from '@/store/thunks/authThunks';
+// redux
 import {
   AuthCredentials,
   DEFAULT_AUTH_CREDENTIALS,
 } from '@/store/slices/authSlice';
+
+// hooks
 import { useLogin } from '@/hooks/useLogin';
 
 const Login = () => {
-
   // States
   const [credentials, setCredentials] = useState<AuthCredentials>(DEFAULT_AUTH_CREDENTIALS);
   const theme = useColorScheme() ?? 'light';
+
+  // Tanstack
   const { mutate, isPending, isSuccess, data } = useLogin();
 
   const onLogin = async () => {
     mutate(credentials);
   };
   const onRegister = async () => {
-    // await dispatch(registerThunk(credentials));
+    // TODO: build register hook
   };
 
   return (

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { loginThunk, registerThunk } from '@/store/thunks/authThunks';
 import axios from 'axios';
 
 // INTERFACES
@@ -56,58 +55,11 @@ export const authSlice = createSlice({
 
       axios.defaults.headers.common['Authorization'] = '';
     },
-  },
-  extraReducers(builder) {
-    // login
-    builder.addCase(loginThunk.pending, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        login: true,
-      };
-    });
-    builder.addCase(loginThunk.fulfilled, (state, action) => {
-      state.data.token = action.payload.token;
-      state.data.isAuthenticated = true;
-
-      state.loaders = {
-        ...state.loaders,
-        login: false,
-      };
-    });
-    builder.addCase(loginThunk.rejected, (state) => {
-      state.data.isAuthenticated = false;
-
-      state.loaders = {
-        ...state.loaders,
-        login: false,
-      };
-    });
-
-    //register
-    builder.addCase(registerThunk.pending, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        register: true,
-      };
-    });
-    builder.addCase(registerThunk.fulfilled, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        register: false,
-      };
-    });
-    builder.addCase(registerThunk.rejected, (state) => {
-      state.loaders = {
-        ...state.loaders,
-        register: false,
-      };
-    });
-  },
+  }
 });
 
 export const SIsAuthenticated = (state: RootState) => state.auth.data.isAuthenticated;
 export const SToken = (state: RootState) => state.auth.data.token;
-export const SAuthLoaders = (state: RootState) => state.auth.loaders;
 
 export const { setAuth, logout } = authSlice.actions;
 
