@@ -1,10 +1,20 @@
+// tanstack
 import { useMutation } from '@tanstack/react-query';
+
+// axios
 import axios from 'axios';
+
+// expo
 import { router } from 'expo-router';
+
+// redux
 import { AuthCredentials, AuthState, setAuth } from '@/store/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
+// constants
+import { ERoutes } from '@/constants/Enums';
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 export const useLogin = () => {
   // Dispatch
   const dispatch: any = useDispatch();
@@ -19,7 +29,7 @@ export const useLogin = () => {
     },
     onSuccess: (data: AuthState) => {
       console.log('Login successful', data);
-      router.push('/home');
+      router.push(ERoutes.home);
       dispatch(setAuth(data));
       return data
     },

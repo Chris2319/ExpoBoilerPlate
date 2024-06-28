@@ -56,6 +56,18 @@ To change the rules, update the ```.prettierrc``` file - just check in with the 
 
 To change the rules, update the ```.eslintrc.json``` file - just check in with the team.
 
+## [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview) (react query)
+
+1. Used for fetching, caching, synchronizing and updating server state
+
+### Queries
+
+1.
+
+### Mutations
+
+1.
+
 ## Redux Toolkit
 
 For state management RTX is used, for this we need to look at 3 things.
@@ -85,6 +97,15 @@ For state management RTX is used, for this we need to look at 3 things.
 ## How to navigate the application:
 
 1. TODO - Once route layout has been decided on please update this.
+
+## Boy scout rule. 
+
+1. Leave the campground cleaner than you found it.
+2. In short; 
+   1. remove comments and unused imports, 
+   2. delete unused functions, 
+   3. keep imports grouped
+   4. alphabetized where possible
 
 ## 5 STEP PROCESS:
 

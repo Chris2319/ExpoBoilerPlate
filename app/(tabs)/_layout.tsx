@@ -14,6 +14,7 @@ import {color} from '@/constants/Colors';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { SIsAuthenticated, logout } from '@/store/slices/authSlice';
+import { ERoutes, EScreens } from '@/constants/Enums';
 
 const TabLayout = () => {
 
@@ -40,9 +41,9 @@ const TabLayout = () => {
         headerTintColor: textColor,
     };
 
-    if (!isAuthenticated) return <Redirect href="/login"/>;
+    if (!isAuthenticated) return <Redirect href={ERoutes.login}/>;
     return <Tabs>
-        <Tabs.Screen name={'home'} options={{
+        <Tabs.Screen name={EScreens.home} options={{
             ...defaultScreenOptions,
             tabBarLabel: 'Home',
             headerShown: false,
@@ -50,7 +51,7 @@ const TabLayout = () => {
                 <Ionicons name={'home'} color={color} size={size}/>
             )
         }}/>
-        <Tabs.Screen name={'orders'} options={{
+        <Tabs.Screen name={EScreens.orders} options={{
             ...defaultScreenOptions,
             tabBarLabel: 'Orders',
             headerShown: false,
@@ -58,7 +59,7 @@ const TabLayout = () => {
                 <Ionicons name={'home'} color={color} size={size}/>
             )
         }}/>
-        <Tabs.Screen name={'profile'} options={{
+        <Tabs.Screen name={EScreens.profile} options={{
             ...defaultScreenOptions,
             tabBarLabel: 'Profile',
             headerTitle: 'Profile',

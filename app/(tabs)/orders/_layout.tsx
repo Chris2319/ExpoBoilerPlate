@@ -6,6 +6,7 @@ import {useThemeColor} from '@/hooks/useThemeColor';
 
 // constants
 import {color} from '@/constants/Colors';
+import { EScreens } from '@/constants/Enums';
 
 const StackLayout = () => {
 
@@ -16,7 +17,7 @@ const StackLayout = () => {
 
     return (
         <Stack>
-            <Stack.Screen name={'index'} options={{
+            <Stack.Screen name={EScreens.index} options={{
                 headerTitle: 'Orders',
                 headerStyle: {
                     backgroundColor: backgroundColor,
